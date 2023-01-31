@@ -138,7 +138,7 @@ public class DrivebaseSubsystem extends SubsystemBase {
       .withLayout(tab.getLayout(title, BuiltInLayouts.kList).withSize(2, 4).withPosition(pos * 2, 0))
       .withGearRatio(gear_ratios)
       .withDriveMotor(MotorType.NEO, drive)
-      .withSteerMotor(MotorType.NEO, steer)
+      .withSteerMotor(MotorType.VICTORSPX, steer)
       .withSteerEncoderPort(encoder)
       .withSteerOffset(offset)
       .build();
