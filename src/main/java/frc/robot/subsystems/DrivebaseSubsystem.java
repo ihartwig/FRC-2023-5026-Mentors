@@ -7,7 +7,10 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.Drive.*;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
+import com.swervedrivespecialties.swervelib.MechanicalConfiguration;
+import com.swervedrivespecialties.swervelib.MkSwerveModuleBuilder;
+import com.swervedrivespecialties.swervelib.MotorType;
+import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
 import com.swervedrivespecialties.swervelib.SwerveModule;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.Pair;
@@ -130,13 +133,16 @@ public class DrivebaseSubsystem extends SubsystemBase {
       String title, int pos, int drive, int steer, int encoder, double offset) {
     // NOTE: our team uses the MK4 configuration with L2 gearing and Falcon 500s
     // if this changes, update the helper/method/GearRatio used, as needed.
-    return Mk4SwerveModuleHelper.createFalcon500(
-        tab.getLayout(title, BuiltInLayouts.kList).withSize(2, 4).withPosition(pos * 2, 0),
-        Mk4SwerveModuleHelper.GearRatio.L2,
-        drive,
-        steer,
-        encoder,
-        offset);
+    MechanicalConfiguration gear_ratios = SdsModuleConfigurations.MK4_L2;
+    SwerveModule module = new MkSwerveModuleBuilder()
+      .withLayout(tab.getLayout(title, BuiltInLayouts.kList).withSize(2, 4).withPosition(pos * 2, 0))
+      .withGearRatio(gear_ratios)
+      .withDriveMotor(MotorType.NEO, drive)
+      .withSteerMotor(MotorType.NEO, steer)
+      .withSteerEncoderPort(encoder)
+      .withSteerOffset(offset)
+      .build();
+    return module;
   }
 
   /** Creates a new DrivebaseSubsystem. */
