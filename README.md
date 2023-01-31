@@ -1,8 +1,14 @@
 # FRC-2023
 
-Iron Panthers repository for 2023 season code.
+Iron Panthers repository for 2023 ~season code~ Mentor fun.
+
+Intended to modify the swerve lib to run on WCP Swerve SS with Falcon500 drive and VictorSPX + CANcoder steering.
 
 ## Setting up
+
+### Special Swerve Lib Note
+
+To allow faster changes to the swerve lib it is included in the main build rather than a vendordep. This is done with a symbolic link in `src/main/java/com/swervedrivespecialties` pointing to a copy of the [swervelib](https://github.com/ihartwig/frc-2023-sds-swerve-lib) in a directory neighboring this repo.
 
 ### Before working: make sure you have the 2023 tools:
 
