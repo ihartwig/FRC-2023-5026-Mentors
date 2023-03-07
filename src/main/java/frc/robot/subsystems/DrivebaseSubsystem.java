@@ -133,10 +133,17 @@ public class DrivebaseSubsystem extends SubsystemBase {
       String title, int pos, int drive, int steer, int encoder, double offset) {
     // NOTE: our team uses the MK4 configuration with L2 gearing and Falcon 500s
     // if this changes, update the helper/method/GearRatio used, as needed.
-    MechanicalConfiguration gear_ratios = SdsModuleConfigurations.MK4_L2;
+    // MechanicalConfiguration gear_ratios = SdsModuleConfigurations.MK4_L2;
+    MechanicalConfiguration wcp_ss_gear_ratios = new MechanicalConfiguration(
+            0.102,
+            (18.0 / 30.0) * (15.0 / 45.0),
+            true,
+            (6.0 / 50.0) * (12.0 / 34.0) * (30.0 / 72.0),
+            true
+    );
     SwerveModule module = new MkSwerveModuleBuilder()
       .withLayout(tab.getLayout(title, BuiltInLayouts.kList).withSize(2, 4).withPosition(pos * 2, 0))
-      .withGearRatio(gear_ratios)
+      .withGearRatio(wcp_ss_gear_ratios)
       .withDriveMotor(MotorType.NEO, drive)
       .withSteerMotor(MotorType.VICTORSPX, steer)
       .withSteerEncoderPort(encoder)
